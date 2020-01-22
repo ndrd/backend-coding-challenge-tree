@@ -2,21 +2,20 @@
 
 ## Requirements
 
-Design a REST API endpoint that provides auto-complete suggestions for large cities.
+Design a REST API endpoint that provides the details of a zip-code in Mexico.
 
-- The endpoint is exposed at `/suggestions`
-- The partial (or complete) search term is passed as a querystring parameter `q`
-- The caller's location can optionally be supplied via querystring parameters `latitude` and `longitude` to help improve relative scores
-- The endpoint returns a JSON response with an array of scored suggested matches
-    - The suggestions are sorted by descending score
-    - Each suggestion has a score between 0 and 1 (inclusive) indicating confidence in the suggestion (1 is most confident)
-    - Each suggestion has a name which can be used to disambiguate between similarly named locations
-    - Each suggestion has a latitude and longitude
+- The endpoint is exposed at `/zip-codes/{zip-code}`
+- The endpoint returns a JSON response with an object with the details of the given zip-code or return 404 if doesn´t exists
 
 ## Constraints
 
 - Use DotNet
+
 - The result must be deployed on google cloud (it has a free tier)
+
+## Data Sources
+You can download the entire register of zip codes of Mexico here.
+- https://www.correosdemexico.gob.mx/SSLServicios/ConsultaCP/Descarga.aspx
 
 ## Advice
 
@@ -26,7 +25,7 @@ Design a REST API endpoint that provides auto-complete suggestions for large cit
 
 ## Can I use a database?
 
-If you wish, it's OK to use external systems such as a database, an Elastic index, etc. in your solution. But this is certainly not required to complete the basic requirements of the challenge. Keep in mind that **our goal here is to see some code of yours**; if you only implement a thin API on top of a DB we won't have much to look at.
+You can use the database you want, but need to justify your choice. Keep in mind that **our goal here is to see some code of yours**; if you only implement a thin API on top of a DB we won't have much to look at.
 
 Our advice is that if you choose to use an external search system, you had better be doing something really truly awesome with it.
 
@@ -36,47 +35,30 @@ These responses are meant to provide guidance. The exact values can vary based o
 
 **Near match**
 
-    GET /suggestions?q=Londo&latitude=43.70011&longitude=-79.4163
+    GET /zip-codes/06140
 
 ```json
 {
-  "suggestions": [
+  "zip_code": "06140",
+  "locality": "CIUDAD DE MEXICO",
+  "federal_entity": "CIUDAD DE MEXICO",
+  "settlements": [
     {
-      "name": "London, ON, Canada",
-      "latitude": "42.98339",
-      "longitude": "-81.23304",
-      "score": 0.9
-    },
-    {
-      "name": "London, OH, USA",
-      "latitude": "39.88645",
-      "longitude": "-83.44825",
-      "score": 0.5
-    },
-    {
-      "name": "London, KY, USA",
-      "latitude": "37.12898",
-      "longitude": "-84.08326",
-      "score": 0.5
-    },
-    {
-      "name": "Londontowne, MD, USA",
-      "latitude": "38.93345",
-      "longitude": "-76.54941",
-      "score": 0.3
+      "name": "CONDESA",
+      "zone_type": "Urbano",
+      "settlement_type": "Colonia"
     }
-  ]
+  ],
+  "municipality": "CUAUHTEMOC"
 }
 ```
 
 **No match**
 
-    GET /suggestions?q=SomeRandomCityInTheMiddleOfNowhere
+    GET /zip-codes/00000
 
 ```json
-{
-  "suggestions": []
-}
+{}
 ```
 
 ## Deliverable
