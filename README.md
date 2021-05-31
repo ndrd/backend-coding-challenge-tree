@@ -2,7 +2,7 @@
 
 ## Requirements
 
-Design a REST API that implements the following operations with binary trees:
+Design a REST API that implements the following operations with binary search trees (b-trees) [https://en.wikipedia.org/wiki/Binary_search_tree]:
 
 Returns the height of a binary tree given an integers list
 - `POST /v1/b-trees/height` 
@@ -40,19 +40,19 @@ The node's neightbors are all the the nodes that live in the same level as the g
         }
     ```
     
-Returns the BFS of the binary tree
+Returns the breadth-first search (BFS) of the binary tree
 - `POST /v1/b-trees/bfs` 
     * input
     ```json
     {
-        "toTree":[-3,-2,-1,1,2,3,4,5,6,7,8],
+        "toTree":[-3,-4,1],
     }
      
     ```
     * output
     ```json
         {
-            "bfs": [x,y,z....]
+            "bfs": [-4,1,-3]
         }
     ```
 
