@@ -19,7 +19,8 @@ Returns the height of a binary tree given an integers list
         }
     ```
     
-Returns the neighbor nodes of the node that contains the given integer
+Returns the neighbor nodes of the node that contains the given integer. 
+The node's neightbors are all the the nodes that live in the same level as the given node.
 - `POST /v1/b-trees/neighbors` 
     * input
     ```json
@@ -63,7 +64,9 @@ Returns the BFS of the binary tree
 
 ## Advice
 
-- **Try to design and implement your solution as you would do for real production code**. Show us how you create clean, maintainable code that does awesome stuff. Build something that we'd be happy to contribute to. This is not a programming contest where dirty hacks win the game.
-- Documentation and maintainability are a plus, and don't you forget those unit tests.
+- **Try to design and implement your solution as you would do for real production code**. Show us how you create clean, maintainable code that does awesome stuff. 
 - We don’t want to know if you can do exactly as asked (or everybody would have the same result). We want to know what **you** bring to the table when working on a project, what is your secret sauce. More features? Best solution? Thinking outside the box?
 
+## Notes
+- Documentation and maintainability are a plus, and don't you forget those unit tests.
+- Review all the API responses, maybe not all of them are correct, or maybe they are
