@@ -25,8 +25,8 @@ The node's neightbors are all the the nodes that live in the same level as the g
     * input
     ```json
     {
-        "toTree":[1,2,3,4,5,6,7,8],
-        "node: 2
+        "toTree": ["1","2","3","4","5","6","7","8"],
+        "value": 2
     }
      
     ```
